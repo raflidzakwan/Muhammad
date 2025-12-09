@@ -1,8 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { InventoryItem, ForecastResult, InsightResult, FinancialTransaction, InvoiceData } from "../types";
 
-// Initialize the API client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 const modelName = "gemini-2.5-flash";
 
 /**
@@ -10,6 +8,9 @@ const modelName = "gemini-2.5-flash";
  * Demonstrates: AI for Supply Chain Management.
  */
 export const predictInventoryNeeds = async (inventory: InventoryItem[]): Promise<ForecastResult[]> => {
+  // Initialized inside function to prevent crash on load if env is missing
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  
   const prompt = `
     Analyze the following hospital inventory data. 
     Based on the 'currentStock', 'reorderLevel', and 'lastUsageRate', 
@@ -57,6 +58,9 @@ export const predictInventoryNeeds = async (inventory: InventoryItem[]): Promise
  * Demonstrates: AI for Business Intelligence & Decision Support.
  */
 export const generateFinancialInsights = async (transactions: FinancialTransaction[]): Promise<InsightResult[]> => {
+  // Initialized inside function to prevent crash on load if env is missing
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
   // Summarize data to avoid token limits if list is huge (simplified for demo)
   const summary = transactions.slice(0, 50); 
   
@@ -104,6 +108,9 @@ export const generateFinancialInsights = async (transactions: FinancialTransacti
  * Demonstrates: AI-Powered Accounting Automation (AP).
  */
 export const parseInvoiceText = async (invoiceText: string): Promise<InvoiceData | null> => {
+  // Initialized inside function to prevent crash on load if env is missing
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
   const prompt = `
     Extract valid invoice data from the following unstructured text.
     If data is missing, estimate confidence as low.
