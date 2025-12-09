@@ -1,0 +1,5 @@
+{
+  "name": "Medius-AI",
+  "description": "A next-generation Hospital ERP powered by Gemini AI, integrating clinical operations, pharmacy inventory, and financial accounting into a single source of truth.",
+  "requestFramePermissions": []
+}
